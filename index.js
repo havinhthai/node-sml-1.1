@@ -8,14 +8,13 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 // Setting static folder
-app.use('/public', express.static('./public'))
+app.use('/public', express.static('./public'));
 
-app.get('/home', (req, res) => {
-    res.send('<a href="/chuyen-muc">Go to category page</a> <br />');
-});
+// Routes
+app.get('/', (req, res) => {
+    // res.send('<a href="/chuyen-muc">Go to category page</a> <br />');
 
-app.get('/chuyen-muc', (req, res) => {
-    res.send('<a href="/home">Back to Home!</a>')
+    res.render('client/index');
 });
 
 app.listen(3000, () => {
