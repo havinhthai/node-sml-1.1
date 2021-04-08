@@ -4,6 +4,7 @@ const mongoose = require('mongoose'); // Import mongoose
 
 // Lấy đối tượng router từ file ./routes/index.js
 const routes = require('./routes');
+const { Post, User } = require('./models');
 
 const app = express();
 
@@ -11,25 +12,9 @@ const app = express();
 mongoose.connect('mongodb://localhost:27017/Blogger', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Tạo model Post
-const Post = mongoose.model('Post', {
-    title: String,
-    views: Number,
-});
 
-const User = mongoose.model('users', {
-    name: {
-        type: String,
-        default: 'AnDanh',
-    },
-    email: {
-        type: String,
-        require: true,
-    },
-    createdAt: {
-        type: Date,
-        default: new Date(),
-    }
-})
+
+
 
 // Setting view engine for Express
 app.set('view engine', 'ejs');
