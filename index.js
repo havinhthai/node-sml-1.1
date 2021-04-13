@@ -1,6 +1,7 @@
 const express = require('express');
 const ejsEngine = require('ejs-mate');
 const mongoose = require('mongoose'); // Import mongoose
+const bodyParser = require('body-parser');
 
 // Lấy đối tượng router từ file ./routes/index.js
 const routes = require('./routes');
@@ -11,12 +12,17 @@ const app = express();
 // Kết nối Express với database Blogger
 mongoose.connect('mongodb://localhost:27017/Blogger', { useNewUrlParser: true, useUnifiedTopology: true });
 
-
 // Setting view engine for Express
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
 app.engine('ejs', ejsEngine);
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
+
 
 // Setting static folder
 app.use('/public', express.static('./public'));
